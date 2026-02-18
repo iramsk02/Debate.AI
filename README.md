@@ -1,16 +1,79 @@
-# React + Vite
+# Debate.AI - AI Ethics Project
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+An interactive AI-driven debate platform. This project uses LangChain and Groq (LLM) to simulate dialectic debates between two AI agents (Pro and Con) with a neutral AI judge providing ethical audits.
 
-Currently, two official plugins are available:
+## Project Structure
+- `main.py`: FastAPI backend server handling LLM logic and streaming.
+- `src/`: React frontend focused on a premium, minimalist architectural UI.
+- `main.ipynb`: Research and testing notebook.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## 🚀 Setup Instructions
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### 1. Prerequisites
+- **Node.js** (v18 or higher)
+- **Python** (v3.9 or higher)
+- **Groq API Key**: Obtain from [Groq Console](https://console.groq.com/)
 
-## Expanding the ESLint configuration
+### 2. Backend Setup (FastAPI)
+Navigate to the root directory and set up the Python environment:
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```bash
+# Create a virtual environment
+python -m venv venv
+
+# Activate the virtual environment
+# On Windows:
+.\venv\Scripts\activate
+# On macOS/Linux:
+source venv/bin/activate
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Configure environment variables
+# Create a .env file in the root if it doesn't exist and add:
+GROQ_API_KEY=your_groq_api_key_here
+```
+
+### 3. Frontend Setup (React + Vite)
+In a new terminal window:
+
+```bash
+# Install NPM dependencies
+npm install
+```
+
+---
+
+## 🛠 Running the Application
+
+To run the full application, you need to start both the backend and frontend.
+
+### Step 1: Start Backend
+```bash
+# Ensure venv is activated
+uvicorn main:app --reload --port 8000
+```
+The backend will be available at `http://127.0.0.1:8000`.
+
+### Step 2: Start Frontend
+```bash
+npm run dev
+```
+The frontend will be available at `http://localhost:5173`.
+
+---
+
+## 🧠 Features
+- **Structural Dialectic**: Dynamic streaming of arguments between two AI personas.
+- **Ethical Audit**: Final judgment includes analysis of **Ethical Soundness** and **Unethical Risks (Moral Hazards)** for both sides.
+- **Complexity Control**: Adjustable debate rounds (1, 2, 3, or 5) for deeper analysis.
+- **Premium UI**: Minimalist black-and-white aesthetic with fluid animations using Framer Motion and Lucide icons.
+
+## ⚖ Ethics Focus
+This project demonstrates the application of ethical frameworks in AI decision-making, specifically exploring:
+- Logical consistency in argumentation.
+- Identification of biases and moral hazards.
+- Dialectic synthesis of opposing viewpoints.
