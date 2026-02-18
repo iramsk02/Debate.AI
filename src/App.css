@@ -1,0 +1,74 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #000000;
+  --color-secondary: #ffffff;
+}
+
+:root {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    background-color: #000000;
+    color: #ffffff;
+  }
+}
+
+body {
+  @apply antialiased;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-3px);
+  }
+
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.text-hover-effect {
+  @apply transition-all duration-300 ease-out;
+  display: inline-block;
+}
+
+.text-hover-effect:hover {
+  @apply -translate-y-1 scale-105;
+  text-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.dark .text-hover-effect:hover {
+  text-shadow: 0 10px 20px rgba(255, 255, 255, 0.1);
+}
+
+.floating-text {
+  animation: float 4s ease-in-out infinite;
+}
+
+.readable-content {
+  line-height: 1.8;
+}
+
+.pro-accent {
+  @apply text-emerald-600/90 dark:text-emerald-400/80;
+}
+
+.con-accent {
+  @apply text-rose-600/90 dark:text-rose-400/80;
+}
+
+.pro-border {
+  @apply border-emerald-500/20;
+}
+
+.con-border {
+  @apply border-rose-500/20;
+}
