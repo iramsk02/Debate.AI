@@ -38,7 +38,7 @@ const LandingPage = () => {
             {/* Hero Section */}
             <section className="relative h-screen flex flex-col items-center justify-center px-6 overflow-hidden">
                 <div className="relative z-10 max-w-5xl text-center">
-                    <p>This is just for testing22</p>
+                    <p>This is just for testing2222</p>
                     {/* <motion.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
