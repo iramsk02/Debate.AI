@@ -10,6 +10,7 @@ function App() {
         <Route path="/" element={<LandingPage />} />
         <Route path="/debate" element={<DebatePage />} />
       </Routes>
+      
     </Router>
   )
 }
