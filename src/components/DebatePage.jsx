@@ -127,7 +127,7 @@ const DebatePage = () => {
                     <div className="text-[10px] font-bold tracking-[0.4em] uppercase">
                         Debate.AI
                     </div>
-                    <div>debatter2222</div>
+                    <div>debatter2222333</div>
                 </div>
                 <div className="flex gap-4 items-center">
                     <div className="hidden md:flex items-center gap-2 border border-white/20 px-3 py-1 bg-white/5">
