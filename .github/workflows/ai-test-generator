@@ -1,0 +1,18 @@
+name: AI Test Generator
+on:
+  pull_request:
+    types: [opened, reopened, synchronize]
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v3
+      - name: Generate Tests
+        
+        uses: iramsk02/AI-Test-Generator@main
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
