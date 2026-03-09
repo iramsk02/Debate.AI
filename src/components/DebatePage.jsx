@@ -135,6 +135,7 @@ const DebatePage = () => {
                     </div>
                     <Plus size={16} strokeWidth={1} className="cursor-pointer hover:rotate-90 transition-transform duration-500" />
                 </div>
+                <div>Hello test geneartor</div>
             </nav>
 
             {/* Main Debate Area */}
