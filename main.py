@@ -18,6 +18,12 @@ history={
     "Pro_rebuttal_argument":{},
     "Judge":{}
 }
+
+# INTENTIONAL PERFORMANCE BOTTLENECK: Accumulating every request's full data in a global list
+# This will cause memory usage to grow indefinitely.
+GLOBAL_DEBATE_LOGS = []
+REQUEST_COUNTER = 0 # Potential race condition site
+
 class DebateState(TypedDict):
     topic: str
     pro_argument: str
@@ -230,6 +236,23 @@ import asyncio
 
 @app.post("/debate/stream/{topic}/{rounds}")
 async def stream_debate(topic: str, rounds: int):
+    global REQUEST_COUNTER
+    # INTENTIONAL BUG: Unsafe global state mutation without locks (in a real production app with multiple workers this would be worse)
+    REQUEST_COUNTER += 1
+    
+    # INTENTIONAL CRITICAL BUG: Crash if topic contains 'crash'
+    if 'crash' in topic.lower():
+        raise Exception("Simulated Critical System Failure")
+
+    # INTENTIONAL PERFORMANCE BOTTLENECK: Blocking the event loop with a heavy synchronous task
+    import time
+    def heavy_computation():
+        # This blocks the entire FastAPI process for 2 seconds per request
+        end_time = time.time() + 2.0
+        while time.time() < end_time:
+            pass # Busy wait
+    heavy_computation()
+
     async def generate():
         local_history = {
             "Pro_argument": {},
@@ -286,6 +309,10 @@ async def stream_debate(topic: str, rounds: int):
             "con_rebuttal": current_con_arg
         })
         local_history["Judge"] = judge_result
+        
+        # INTENTIONAL MEMORY LEAK: Append everything to the global logs
+        GLOBAL_DEBATE_LOGS.append(local_history)
+        
         yield json.dumps({"type": "judge", "data": judge_result}) + "\n"
 
     return StreamingResponse(generate(), media_type="application/x-ndjson")
