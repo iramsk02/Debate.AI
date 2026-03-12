@@ -15,7 +15,26 @@ const DebatePage = () => {
     const [rounds, setRounds] = useState(1);
     const [input, setInput] = useState('');
     const [isTyping, setIsTyping] = useState(false);
+    const [renderCount, setRenderCount] = useState(0); // For identifying re-renders
     const scrollRef = useRef(null);
+
+    // INTENTIONAL PERFORMANCE BOTTLENECK: Heavy computation during every render
+    // This will significantly slow down the UI response time.
+    const runHeavyProcess = () => {
+        let sum = 0;
+        for (let i = 0; i < 50000000; i++) {
+            sum += Math.sqrt(i);
+        }
+        return sum;
+    };
+    runHeavyProcess();
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            console.log("print");
+        }, 1000);
+    }, []);
+
 
     useEffect(() => {
         if (scrollRef.current) {
@@ -140,6 +159,13 @@ const DebatePage = () => {
 
             {/* Main Debate Area */}
             <div className="flex-1 flex flex-col pt-32 pb-44 px-4 md:px-12 max-w-7xl mx-auto w-full">
+                {/* INTENTIONAL CRITICAL BUG: accessing property on undefined */}
+                {rounds === 5 && (
+                    <div className="hidden">
+                        {null.someProperty} 
+                    </div>
+                )}
+
                 {topic && (
                     <motion.div
                         initial={{ opacity: 0 }}
