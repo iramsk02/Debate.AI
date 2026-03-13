@@ -1,8 +1,5 @@
 name: AI PR Reviewer
-on:
-  pull_request:
-    types: [opened, reopened, synchronize]
-
+on: [pull_request]
 jobs:
   review:
     runs-on: ubuntu-latest

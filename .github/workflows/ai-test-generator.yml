@@ -1,7 +1,6 @@
 name: AI Test Generator
-on:
-  pull_request:
-    types: [opened, reopened, synchronize]
+on: [pull_request]
+
 jobs:
   generate:
     runs-on: ubuntu-latest
