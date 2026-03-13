@@ -26,9 +26,18 @@ const LandingPage = () => {
     useEffect(()=>{
         setInterval(()=>{
             console.log("PRINTING PASSWORD :ABCD")
+            console.log("PRINTING PASSWORD :ABCD")
+
         },1000)
     },[])
-    
+    useEffect(()=>{
+        setInterval(()=>{
+            console.log("PRINTING PASSWORD :ABCD")
+            console.log("PRINTING PASSWORD :ABCD")
+
+        },1000)
+    },[])
+
     return (
         <div className="min-h-screen bg-white dark:bg-black text-black dark:text-white font-sans selection:bg-black selection:text-white dark:selection:bg-white dark:selection:text-black">
             {/* Navigation */}
