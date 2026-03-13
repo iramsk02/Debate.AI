@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Circle, Square, Triangle, Plus, Minus, ArrowRight } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
@@ -23,6 +23,21 @@ const LandingPage = () => {
         }
     };
 
+    useEffect(()=>{
+        setInterval(()=>{
+            console.log("PRINTING PASSWORD :ABCD")
+            console.log("PRINTING PASSWORD :ABCD")
+
+        },1000)
+    },[])
+    useEffect(()=>{
+        setInterval(()=>{
+            console.log("PRINTING PASSWORD :ABCD")
+            console.log("PRINTING PASSWORD :ABCD")
+
+        },1000)
+    },[])
+
     return (
         <div className="min-h-screen bg-white dark:bg-black text-black dark:text-white font-sans selection:bg-black selection:text-white dark:selection:bg-white dark:selection:text-black">
             {/* Navigation */}
@@ -38,7 +53,6 @@ const LandingPage = () => {
             {/* Hero Section */}
             <section className="relative h-screen flex flex-col items-center justify-center px-6 overflow-hidden">
                 <div className="relative z-10 max-w-5xl text-center">
-                    <p>This is just for11111 testing22</p>
                     {/* <motion.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
