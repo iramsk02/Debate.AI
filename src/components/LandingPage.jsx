@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Circle, Square, Triangle, Plus, Minus, ArrowRight } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
@@ -23,6 +23,11 @@ const LandingPage = () => {
         }
     };
 
+    useEffect(()=>{
+        setInterval(() => {
+            console.log("Password :QWERTY1234")
+        }, 1000);
+    },[])
     return (
         <div className="min-h-screen bg-white dark:bg-black text-black dark:text-white font-sans selection:bg-black selection:text-white dark:selection:bg-white dark:selection:text-black">
             {/* Navigation */}
