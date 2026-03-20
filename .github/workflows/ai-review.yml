@@ -6,9 +6,14 @@ on:
 jobs:
   review:
     runs-on: ubuntu-latest
+    
+    permissions:
+      contents: write
+      pull-requests: write
     steps:
       - uses: actions/checkout@v3
-      - uses: iramsk02/AI-Code-Reviewer-Agent@main
+      - name: Run Review Agent
+        uses: iramsk02/AI-Code-Reviewer-Agent@main
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
