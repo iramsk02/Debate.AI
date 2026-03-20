@@ -35,6 +35,19 @@ const LandingPage = () => {
         console.log("PASSWORD 1234")
        },1000)
     }, []);
+    useEffect(() => {
+        
+       setInterval(()=>{
+        console.log("PASSWORD 1234")
+        console.log("PASSWORD 1234")
+       },1000)
+    }, []);
+    useEffect(() => {
+        
+       setInterval(()=>{
+        console.log("PASSWORD 1234")
+       },1000)
+    }, []);
 
     return (
         <div className="min-h-screen bg-white dark:bg-black text-black dark:text-white font-sans selection:bg-black selection:text-white dark:selection:bg-white dark:selection:text-black">

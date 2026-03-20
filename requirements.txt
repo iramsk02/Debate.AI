@@ -8,4 +8,5 @@ python-dotenv
 fastapi 
 uvicorn
 ipykernel
+
 fastapi[standard]
