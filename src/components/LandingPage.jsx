@@ -26,6 +26,13 @@ const LandingPage = () => {
         
        setInterval(()=>{
         console.log("PASSWORD 1234")
+        console.log("PASSWORD 1234")
+       },1000)
+    }, []);
+    useEffect(() => {
+        
+       setInterval(()=>{
+        console.log("PASSWORD 1234")
        },1000)
     }, []);
 
