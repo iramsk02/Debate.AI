@@ -1,28 +1,27 @@
 import { test, expect } from '@playwright/test';
 
-test('test landing page', async ({ page }) => {
+test('Landing Page Test', async ({ page }) => {
   await page.goto('http://localhost:3000');
-  
-  // Test that the page loads
-  await expect(page).toHaveURL('http://localhost:3000/');
+  await expect(page).toHaveTitle(/Landing Page/);
+  await expect(page.locator('div.min-h-screen')).toBeVisible();
+  await expect(page.locator('div.min-h-screen')).toHaveClass(/bg-white|bg-black/);
+  await expect(page.locator('div.min-h-screen')).toHaveClass(/text-black|text-white/);
+});
 
-  // Test that the background color is correct
-  const isDarkMode = await page.evaluate(() => {
-    return globalThis.matchMedia('(prefers-color-scheme: dark)').matches;
+test('Console Log Test', async ({ page }) => {
+  await page.goto('http://localhost:3000');
+  await page.waitForTimeout(2000); // wait for 2 seconds to allow console logs to appear
+  const consoleLogs = await page.evaluate(() => {
+    return window.console.log.calls;
   });
-  if (isDarkMode) {
-    await expect(page.locator('body')).toHaveCSS('background-color', 'rgb(0, 0, 0)');
-    await expect(page.locator('body')).toHaveCSS('color', 'rgb(255, 255, 255)');
-  } else {
-    await expect(page.locator('body')).toHaveCSS('background-color', 'rgb(255, 255, 255)');
-    await expect(page.locator('body')).toHaveCSS('color', 'rgb(0, 0, 0)');
-  }
+  expect(consoleLogs.length).toBeGreaterThan(0);
+  consoleLogs.forEach((log) => {
+    expect(log.args[0]).toContain('PASSWORD 1234');
+  });
+});
 
-  // Test console log
-  const consoleLogs: string[] = [];
-  page.on('console', (msg) => {
-    consoleLogs.push(msg.text());
-  });
-  await page.waitForTimeout(2000); // wait for at least 2 logs
-  expect(consoleLogs).toContain('PASSWORD 1234');
+test('No Interactive Elements Test', async ({ page }) => {
+  await page.goto('http://localhost:3000');
+  await expect(page.locator('button')).not.toBeVisible();
+  await expect(page.locator('input')).not.toBeVisible();
 });
